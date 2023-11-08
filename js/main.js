@@ -21,7 +21,7 @@ function init() {
 
 function getGeoJson() {
     const Http = new XMLHttpRequest();
-    const url = 'https://ekimemo-data.s3.amazonaws.com/geojson/data.geojson';
+    const url = '../data/data.geojson';
     Http.open('GET', url);
     Http.send();
 
