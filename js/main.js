@@ -58,7 +58,9 @@ function getGeoJson() {
                         opacity: 1,
                         fillColor: "#000000",
                         fillOpacity: 1,
-                    }).on('click', onClick);
+                    })
+                        .on('click', onClick)
+                        .bindPopup(feature.properties.title);
                 },
                 filter: (feature) => {
                     return !feature.properties.accessed;
