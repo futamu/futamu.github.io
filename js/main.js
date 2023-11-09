@@ -58,7 +58,7 @@ function getGeoJson() {
                         opacity: 1,
                         fillColor: "#000000",
                         fillOpacity: 1,
-                    });
+                    }).on('click', onClick);
                 },
                 filter: (feature) => {
                     return !feature.properties.accessed;
@@ -75,6 +75,10 @@ function getGeoJson() {
             L.control.layers(null, baseKayerControles, { collapsed: false, }).addTo(gMap);
         }
     }
+}
+
+function onClick(e) {
+    console.log(e);
 }
 
 // function onEachFeature(feature, layer) {
