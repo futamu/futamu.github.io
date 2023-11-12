@@ -40,11 +40,10 @@ function getGeoJson() {
                         fillColor: selectColor(feature),
                         fillOpacity: 1,
                     })
-                        .on('click', onClick)
+                        .on('dblclick', onDblClick)
                         .bindPopup(feature.properties.Name);
                 },
                 filter: (feature) => {
-                    console.log(feature.properties.Accessed);
                     switch (feature.properties.Accessed) {
                         case "true":
                             return true;
@@ -67,7 +66,7 @@ function getGeoJson() {
                         fillColor: "#000000",
                         fillOpacity: 1,
                     })
-                        .on('click', onClick)
+                        .on('dblclick', onDblClick)
                         .bindPopup(feature.properties.Name);
                 },
                 filter: (feature) => {
@@ -92,8 +91,45 @@ function getGeoJson() {
     }
 }
 
-function onClick(e) {
-    console.log(e.target.feature.properties.Name);
+function onDblClick(e) {
+    const id = e.target.feature.properties.Id;
+    const Http = new XMLHttpRequest();
+    var url = 'https://pipld6xm54.execute-api.ap-northeast-1.amazonaws.com/default/ekimemoMng/';
+
+    switch (e.target.feature.properties.Accessed) {
+        case 'true':
+            e.target.feature.properties.Accessed = 'false';
+            url = url + 'checkOut/' + id;
+            Http.open('GET', url);
+            Http.send();
+
+            e.target.setStyle({
+                radius: 7,
+                color: e.target.feature.properties.marker_color,
+                weight: 2,
+                opacity: 1,
+                fillColor: "#000000",
+                fillOpacity: 1,
+            });
+            break;
+        case 'false':
+            e.target.feature.properties.Accessed = 'true';
+            url = url + 'checkIn/' + id;
+            Http.open('GET', url);
+            Http.send();
+
+            e.target.setStyle({
+                radius: 8,
+                color: "#000000",
+                weight: 1,
+                opacity: 1,
+                fillColor: e.target.feature.properties.marker_color,
+                fillOpacity: 1,
+            });
+            break;
+        default:
+            break;
+    }
 }
 
 function selectColor(feature) {
