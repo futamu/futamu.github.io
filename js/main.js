@@ -22,7 +22,7 @@ function init() {
 
 function getGeoJson() {
     const Http = new XMLHttpRequest();
-    const url = '../data/data.geojson';
+    const url = 'https://pipld6xm54.execute-api.ap-northeast-1.amazonaws.com/default/ekimemoMng/stations';
     Http.open('GET', url);
     Http.send();
 
@@ -37,9 +37,11 @@ function getGeoJson() {
                         color: "#000000",
                         weight: 1,
                         opacity: 1,
-                        fillColor: feature.properties.marker_color,
+                        fillColor: selectColor(feature),
                         fillOpacity: 1,
-                    });
+                    })
+                        .on('click', onClick)
+                        .bindPopup(feature.properties.title);
                 },
                 filter: (feature) => {
                     return feature.properties.accessed;
@@ -53,7 +55,7 @@ function getGeoJson() {
                 pointToLayer: (feature, latlng) => {
                     return L.circleMarker(latlng, {
                         radius: 7,
-                        color: feature.properties.marker_color,
+                        color: selectColor(feature),
                         weight: 2,
                         opacity: 1,
                         fillColor: "#000000",
@@ -80,7 +82,20 @@ function getGeoJson() {
 }
 
 function onClick(e) {
-    console.log(e);
+    console.log(e.target.feature.properties.title);
+}
+
+function selectColor(feature) {
+    switch (feature.properties.Type) {
+        case 'heat':
+            return '#AA3C1E';
+        case 'eco':
+            return '#1E8C13';
+        case 'cool':
+            return '#286EAA';
+        default:
+            return '#666666';
+    }
 }
 
 // function onEachFeature(feature, layer) {
