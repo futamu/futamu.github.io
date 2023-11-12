@@ -6,7 +6,7 @@ let gMap;
 let gPopup = L.popup();
 
 function init() {
-    gMap = L.map("map"); // 地図の生成
+    gMap = L.map("map", { doubleClickZoom: false }); // 地図の生成
     gMap.setView([lat, lng], zoom); // 緯度経度、ズームレベルを設定する
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -87,8 +87,6 @@ function getGeoJson() {
                 '未取得': layerNonAccessed,
             };
             L.control.layers(null, baseLayerControles, { collapsed: false, }).addTo(gMap);
-
-            gMap.addLayer(baseLayerControles);
         }
     }
 }
