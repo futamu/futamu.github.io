@@ -30,6 +30,8 @@ function getGeoJson() {
         if (Http.readyState == 4 && Http.status == 200) {
             const data = JSON.parse(Http.responseText);
 
+            console.log(data);
+
             const layerOptionsAccessed = {
                 pointToLayer: (feature, latlng) => {
                     return L.circleMarker(latlng, {
