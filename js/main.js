@@ -105,7 +105,7 @@ function onDblClick(e) {
 
             e.target.setStyle({
                 radius: 7,
-                color: e.target.feature.properties.marker_color,
+                color: selectColor(e.target.feature),
                 weight: 2,
                 opacity: 1,
                 fillColor: "#000000",
@@ -123,7 +123,7 @@ function onDblClick(e) {
                 color: "#000000",
                 weight: 1,
                 opacity: 1,
-                fillColor: e.target.feature.properties.marker_color,
+                fillColor: selectColor(e.target.feature),
                 fillOpacity: 1,
             });
             break;
