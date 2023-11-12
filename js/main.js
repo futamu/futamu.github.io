@@ -44,7 +44,12 @@ function getGeoJson() {
                         .bindPopup(feature.properties.Name);
                 },
                 filter: (feature) => {
-                    return feature.properties.Accessed;
+                    switch (feature.properties.Accessed) {
+                        case "True":
+                            return true;
+                        default:
+                            return false;
+                    }
                 },
             };
 
@@ -65,7 +70,12 @@ function getGeoJson() {
                         .bindPopup(feature.properties.Name);
                 },
                 filter: (feature) => {
-                    return !feature.properties.Accessed;
+                    switch (feature.properties.Accessed) {
+                        case "False":
+                            return true;
+                        default:
+                            return false;
+                    }
                 },
             };
 
