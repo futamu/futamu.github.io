@@ -30,8 +30,6 @@ function getGeoJson() {
         if (Http.readyState == 4 && Http.status == 200) {
             const data = JSON.parse(Http.responseText);
 
-            console.log(data);
-
             const layerOptionsAccessed = {
                 pointToLayer: (feature, latlng) => {
                     return L.circleMarker(latlng, {
@@ -43,10 +41,10 @@ function getGeoJson() {
                         fillOpacity: 1,
                     })
                         .on('click', onClick)
-                        .bindPopup(feature.properties.title);
+                        .bindPopup(feature.properties.Name);
                 },
                 filter: (feature) => {
-                    return feature.properties.accessed;
+                    return feature.properties.Accessed;
                 },
             };
 
@@ -64,10 +62,10 @@ function getGeoJson() {
                         fillOpacity: 1,
                     })
                         .on('click', onClick)
-                        .bindPopup(feature.properties.title);
+                        .bindPopup(feature.properties.Name);
                 },
                 filter: (feature) => {
-                    return !feature.properties.accessed;
+                    return !feature.properties.Accessed;
                 },
             };
 
@@ -84,7 +82,7 @@ function getGeoJson() {
 }
 
 function onClick(e) {
-    console.log(e.target.feature.properties.title);
+    console.log(e.target.feature.properties.Name);
 }
 
 function selectColor(feature) {
