@@ -82,11 +82,13 @@ function getGeoJson() {
             const layerNonAccessed = L.geoJSON(data, layerOptionsNonAccessed);
             // layerNonAccessed.addTo(gMap);
 
-            let baseKayerControles = {
+            let baseLayerControles = {
                 '取得済': layerAccessed,
                 '未取得': layerNonAccessed,
             };
-            L.control.layers(null, baseKayerControles, { collapsed: false, }).addTo(gMap);
+            L.control.layers(null, baseLayerControles, { collapsed: false, }).addTo(gMap);
+
+            gMap.addLayer(baseLayerControles);
         }
     }
 }
