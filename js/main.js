@@ -44,6 +44,7 @@ function getGeoJson() {
                         .bindPopup(feature.properties.Name);
                 },
                 filter: (feature) => {
+                    console.log(feature.properties.Accessed);
                     switch (feature.properties.Accessed) {
                         case "True":
                             return true;
