@@ -46,7 +46,7 @@ function getGeoJson() {
                 filter: (feature) => {
                     console.log(feature.properties.Accessed);
                     switch (feature.properties.Accessed) {
-                        case "True":
+                        case "true":
                             return true;
                         default:
                             return false;
@@ -72,7 +72,7 @@ function getGeoJson() {
                 },
                 filter: (feature) => {
                     switch (feature.properties.Accessed) {
-                        case "False":
+                        case "false":
                             return true;
                         default:
                             return false;
