@@ -39,54 +39,25 @@ function getGeoJson() {
                         opacity: 1,
                         fillColor: selectColor(feature),
                         fillOpacity: 1,
+                        tags: createTags(feature),
                     })
-                        .on('dblclick', onDblClick)
+                        // .on('dblclick', onDblClick)
                         .bindPopup(feature.properties.Name);
                 },
-                filter: (feature) => {
-                    switch (feature.properties.Accessed) {
-                        case "true":
-                            return true;
-                        default:
-                            return false;
-                    }
-                },
             };
 
-            const layerAccessed = L.geoJSON(data, layerOptionsAccessed);
-            // layerAccessed.addTo(gMap);
+            L.geoJSON(data, layerOptionsAccessed).addTo(gMap);
 
-            const layerOptionsNonAccessed = {
-                pointToLayer: (feature, latlng) => {
-                    return L.circleMarker(latlng, {
-                        radius: 7,
-                        color: selectColor(feature),
-                        weight: 2,
-                        opacity: 1,
-                        fillColor: "#000000",
-                        fillOpacity: 1,
-                    })
-                        .on('dblclick', onDblClick)
-                        .bindPopup(feature.properties.Name);
-                },
-                filter: (feature) => {
-                    switch (feature.properties.Accessed) {
-                        case "false":
-                            return true;
-                        default:
-                            return false;
-                    }
-                },
-            };
+            L.control.tagFilterButton({
+                data: ['cool', 'eco', 'heat', 'none'],
+                icon: '<img src="https://www.metro.tokyo.lg.jp/shared/images/favicon/favicon.ico">'
+            }).addTo(gMap);
 
-            const layerNonAccessed = L.geoJSON(data, layerOptionsNonAccessed);
-            // layerNonAccessed.addTo(gMap);
-
-            let baseLayerControles = {
-                '取得済': layerAccessed,
-                '未取得': layerNonAccessed,
-            };
-            L.control.layers(null, baseLayerControles, { collapsed: false, }).addTo(gMap);
+            L.control.tagFilterButton({
+                data: ['checked', 'unchecked'],
+                filterOnEveryClick: true,
+                icon: '<img src="https://www.nta.go.jp/favicon.ico">'
+            }).addTo(gMap);
         }
     }
 }
@@ -143,6 +114,30 @@ function selectColor(feature) {
         default:
             return '#666666';
     }
+}
+
+function createTags(feature) {
+    const type = feature.properties.Type;
+    const accessed = feature.properties.Accessed;
+    const deleted = feature.properties.Deleted;
+
+    const tags = [];
+
+    tags.push(type);
+
+    if (accessed == "true") {
+        tags.push("checked");
+    } else {
+        tags.push("unchecked");
+    }
+
+    if (deleted == "true") {
+        tags.push("inactive");
+    } else {
+        tags.push("active");
+    }
+
+    return tags;
 }
 
 // function onEachFeature(feature, layer) {
