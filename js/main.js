@@ -48,11 +48,11 @@ function getGeoJson() {
 
             L.geoJSON(data, layerOptionsAccessed).addTo(gMap);
 
-            var typeFilterBtn = L.control.tagFilterButton({
-                data: ['cool', 'eco', 'heat', 'none'],
-                filterOnEveryClick: true,
-                icon: '<img src="icon01.jpeg">'
-            }).addTo(gMap);
+            // var typeFilterBtn = L.control.tagFilterButton({
+            //     data: ['cool', 'eco', 'heat', 'none'],
+            //     filterOnEveryClick: true,
+            //     icon: '<img src="icon01.jpeg">'
+            // }).addTo(gMap);
 
             var checkFilterBtn = L.control.tagFilterButton({
                 data: ['checked', 'unchecked'],
@@ -60,14 +60,8 @@ function getGeoJson() {
                 icon: '<img src="icon02.jpeg">'
             }).addTo(gMap);
 
-            typeFilterBtn.addToReleated(checkFilterBtn);
+            // typeFilterBtn.addToReleated(checkFilterBtn);
 
-            jQuery('.easy-button-button').click(function () {
-                target = jQuery('.easy-button-button').not(this);
-                target.parent().find('.tag-filter-tags-container').css({
-                    'display': 'none',
-                });
-            });
         }
     }
 }
