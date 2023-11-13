@@ -50,6 +50,7 @@ function getGeoJson() {
 
             var typeFilterBtn = L.control.tagFilterButton({
                 data: ['cool', 'eco', 'heat', 'none'],
+                filterOnEveryClick: true,
                 icon: '<img src="icon01.jpeg">'
             }).addTo(gMap);
 
