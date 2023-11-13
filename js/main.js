@@ -10,7 +10,6 @@ function init() {
     gMap.setView([lat, lng], zoom); // 緯度経度、ズームレベルを設定する
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        // L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png',
         {
             // 著作権の表示
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -33,15 +32,15 @@ function getGeoJson() {
             const layerOptionsAccessed = {
                 pointToLayer: (feature, latlng) => {
                     return L.circleMarker(latlng, {
-                        radius: 8,
-                        color: "#000000",
-                        weight: 1,
+                        radius: 7,
+                        color: selectColor(feature),
+                        weight: 2,
                         opacity: 1,
-                        fillColor: selectColor(feature),
+                        fillColor: selectFillColor(feature),
                         fillOpacity: 1,
                         tags: createTags(feature),
                     })
-                        // .on('dblclick', onDblClick)
+                        .on('dblclick', onDblClick)
                         .bindPopup(feature.properties.Name);
                 },
             };
@@ -78,36 +77,40 @@ function onDblClick(e) {
             Http.open('GET', url);
             Http.send();
 
-            e.target.setStyle({
-                radius: 7,
-                color: selectColor(e.target.feature),
-                weight: 2,
-                opacity: 1,
-                fillColor: "#000000",
-                fillOpacity: 1,
-            });
             break;
         case 'false':
             e.target.feature.properties.Accessed = 'true';
             url = url + 'checkIn/' + id;
             Http.open('GET', url);
             Http.send();
-
-            e.target.setStyle({
-                radius: 8,
-                color: "#000000",
-                weight: 1,
-                opacity: 1,
-                fillColor: selectColor(e.target.feature),
-                fillOpacity: 1,
-            });
             break;
         default:
             break;
     }
+
+    e.target.setStyle({
+        radius: 7,
+        color: selectColor(e.target.feature),
+        weight: 2,
+        opacity: 1,
+        fillColor: selectFillColor(e.target.feature),
+        fillOpacity: 1,
+        tags: createTags(e.target.feature),
+    });
 }
 
 function selectColor(feature) {
+    switch (feature.properties.Accessed) {
+        case 'true':
+            return '#FF9900';
+        case 'false':
+            return '#FFFF33';
+        default:
+            return '#FFFFFF';
+    }
+}
+
+function selectFillColor(feature) {
     switch (feature.properties.Type) {
         case 'heat':
             return '#AA3C1E';
