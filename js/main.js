@@ -32,9 +32,9 @@ function getGeoJson() {
             const layerOptionsAccessed = {
                 pointToLayer: (feature, latlng) => {
                     return L.circleMarker(latlng, {
-                        radius: 7,
+                        radius: 8,
                         color: selectColor(feature),
-                        weight: 2,
+                        weight: 1,
                         opacity: 1,
                         fillColor: selectFillColor(feature),
                         fillOpacity: 1,
@@ -89,9 +89,9 @@ function onDblClick(e) {
     }
 
     e.target.setStyle({
-        radius: 7,
+        radius: 8,
         color: selectColor(e.target.feature),
-        weight: 2,
+        weight: 1,
         opacity: 1,
         fillColor: selectFillColor(e.target.feature),
         fillOpacity: 1,
@@ -104,7 +104,7 @@ function selectColor(feature) {
         case 'true':
             return '#FF9900';
         case 'false':
-            return '#FFFF33';
+            return '#000000';
         default:
             return '#FFFFFF';
     }
