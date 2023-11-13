@@ -50,13 +50,13 @@ function getGeoJson() {
 
             L.control.tagFilterButton({
                 data: ['cool', 'eco', 'heat', 'none'],
-                icon: '<img src="https://www.metro.tokyo.lg.jp/shared/images/favicon/favicon.ico">'
+                icon: '<img src="icon01.jpeg">'
             }).addTo(gMap);
 
             L.control.tagFilterButton({
                 data: ['checked', 'unchecked'],
                 filterOnEveryClick: true,
-                icon: '<img src="https://www.nta.go.jp/favicon.ico">'
+                icon: '<img src="icon02.jpeg">'
             }).addTo(gMap);
         }
     }
