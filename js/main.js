@@ -41,7 +41,7 @@ function getGeoJson() {
                         tags: createTags(feature),
                     })
                         .on('dblclick', onDblClick)
-                        .bindPopup(feature.properties.Name);
+                        .bindPopup(createBindItem(feature));
                 },
             };
 
@@ -136,6 +136,15 @@ function selectFillColor(feature) {
         }
         return '#666666';
     }
+}
+
+function createBindItem(feature) {
+    const Id = feature.properties.Id;
+    const Name = feature.properties.Name;
+
+    var item = Id + '</br>' + Name;
+
+    return item;
 }
 
 function createTags(feature) {
