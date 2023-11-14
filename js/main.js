@@ -128,11 +128,13 @@ function selectColor(feature) {
 // }
 
 function selectFillColor(feature) {
-    switch (feature.properties.Accessed) {
-        case 'true':
-            return '#1E8C13';
-        default:
-            return '#666666';
+    if (feature.properties.Accessed == 'true') {
+        return '#1E8C13';
+    } else {
+        if (feature.properties.Type == 'none') {
+            return '#AA3C1E';
+        }
+        return '#666666';
     }
 }
 
