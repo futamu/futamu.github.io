@@ -99,25 +99,38 @@ function onDblClick(e) {
     });
 }
 
+// function selectColor(feature) {
+//     switch (feature.properties.Accessed) {
+//         case 'true':
+//             return '#FF9900';
+//         case 'false':
+//             return '#000000';
+//         default:
+//             return '#FFFFFF';
+//     }
+// }
+
 function selectColor(feature) {
-    switch (feature.properties.Accessed) {
-        case 'true':
-            return '#FF9900';
-        case 'false':
-            return '#000000';
-        default:
-            return '#FFFFFF';
-    }
+    return '#000000';
 }
 
+// function selectFillColor(feature) {
+//     switch (feature.properties.Type) {
+//         case 'heat':
+//             return '#AA3C1E';
+//         case 'eco':
+//             return '#1E8C13';
+//         case 'cool':
+//             return '#286EAA';
+//         default:
+//             return '#666666';
+//     }
+// }
+
 function selectFillColor(feature) {
-    switch (feature.properties.Type) {
-        case 'heat':
-            return '#AA3C1E';
-        case 'eco':
+    switch (feature.properties.Accessed) {
+        case 'true':
             return '#1E8C13';
-        case 'cool':
-            return '#286EAA';
         default:
             return '#666666';
     }
