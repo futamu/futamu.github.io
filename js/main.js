@@ -18,7 +18,7 @@ function init() {
     const mtLayer = L.maptilerLayer({
         apiKey: 'kLDcubnaeP3o00MMpScj',
         style: "jp-mierune-streets",
-    }).addTo(map);
+    }).addTo(gMap);
 
     getGeoJson();
 }
