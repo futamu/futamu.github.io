@@ -9,12 +9,16 @@ function init() {
     gMap = L.map("map", { doubleClickZoom: false }); // 地図の生成
     gMap.setView([lat, lng], zoom); // 緯度経度、ズームレベルを設定する
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        {
-            // 著作権の表示
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }
-    ).addTo(gMap);
+    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    //     {
+    //         // 著作権の表示
+    //         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    //     }
+    // ).addTo(gMap);
+    const mtLayer = L.maptilerLayer({
+        apiKey: 'kLDcubnaeP3o00MMpScj',
+        style: "jp-mierune-streets",
+    }).addTo(map);
 
     getGeoJson();
 }
