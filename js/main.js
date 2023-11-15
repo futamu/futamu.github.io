@@ -50,11 +50,11 @@ function getGeoJson() {
 
             L.geoJSON(data, layerOptionsAccessed).addTo(gMap);
 
-            // var typeFilterBtn = L.control.tagFilterButton({
-            //     data: ['cool', 'eco', 'heat', 'none'],
-            //     filterOnEveryClick: true,
-            //     icon: '<img src="icon01.jpeg">'
-            // }).addTo(gMap);
+            var typeFilterBtn = L.control.tagFilterButton({
+                data: ['cool', 'eco', 'heat', 'none'],
+                filterOnEveryClick: true,
+                icon: '<img src="icon01.jpeg">'
+            }).addTo(gMap);
 
             var checkFilterBtn = L.control.tagFilterButton({
                 data: ['checked', 'unchecked'],
