@@ -14,7 +14,7 @@ function init() {
     //         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     //     }
     // ).addTo(gMap);
-    const mtLayer = L.maptilerLayer({
+    L.MaptilerLayer({
         apiKey: 'kLDcubnaeP3o00MMpScj',
         style: "jp-mierune-streets",
     }).addTo(gMap);
