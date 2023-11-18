@@ -19,7 +19,7 @@ function init() {
         {
             attribution: "<a href='https://developers.google.com/maps/documentation' target='_blank'>Google Map</a>"
         }
-    ).addTo(map);
+    ).addTo(gMap);
     // L.MaptilerLayer({
     //     apiKey: 'kLDcubnaeP3o00MMpScj',
     //     style: "jp-mierune-streets",
