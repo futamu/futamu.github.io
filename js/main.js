@@ -102,19 +102,16 @@ function selectColor(feature) {
 // }
 
 function selectFillColor(feature) {
-    if (feature.properties.Accessed == 'true') {
+    if (feature.properties.isCheckedIn == true) {
         return '#1E8C13';
     } else {
-        if (feature.properties.Type == 'none') {
-            return '#AA3C1E';
-        }
         return '#666666';
     }
 }
 
 function createBindItem(feature) {
-    const Id = feature.properties.Id;
-    const Name = feature.properties.Name;
+    const Id = feature.properties.id;
+    const Name = feature.properties.name;
 
     var item = Id + '</br>' + Name;
 
