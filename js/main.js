@@ -26,6 +26,11 @@ function init() {
     // }).addTo(gMap);
 
     getGeoJson();
+
+    gMap.locate({ setView: true, maxZoom: zoom });
+    gMap.on('locationerror', function (e) {
+        alert("位置情報を取得できませんでした: " + e.message);
+    });
 }
 
 function getGeoJson() {
