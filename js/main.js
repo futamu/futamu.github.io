@@ -78,6 +78,26 @@ function getGeoJson() {
     }
 }
 
+async function showNearest(stationId) {
+  markerLayer.clearLayers();
+
+  // 近い駅を取得
+  const res = await fetch(`http://192.168.200.52:3000/nearest-stations-by-id?stationid=${stationId}&limit=12`);
+  const nearest = await res.json();
+
+  nearest.forEach(st => {
+    L.marker([st.latitude, st.longitude])
+      .bindPopup(`${st.name}<br>${Math.round(st.distance_m)} m`)
+      .addTo(markerLayer);
+  });
+
+  // 中心を指定駅に
+  const baseStation = nearest.find(st => st.id === stationId);
+  if (baseStation) {
+    map.setView([baseStation.latitude, baseStation.longitude], 14);
+  }
+}
+
 function selectColor(feature) {
     switch (feature.properties.isClosed) {
         case true:
@@ -118,7 +138,7 @@ function createBindItem(feature) {
     const Id = feature.properties.id;
     const Name = feature.properties.name;
 
-    var item = Id + '</br>' + Name;
+    var item = `${Id}</br>${Name}</br><button onclick="showNearest(${Id})">近い駅を見る</button>`;
 
     return item;
 }
