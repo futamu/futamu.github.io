@@ -41,9 +41,9 @@ function getGeoJson() {
             const layerOptionsAccessed = {
                 pointToLayer: (feature, latlng) => {
                     return L.circleMarker(latlng, {
-                        radius: 8,
+                        radius: 6,
                         color: selectColor(feature),
-                        weight: 1,
+                        weight: 2,
                         opacity: 1,
                         fillColor: selectFillColor(feature),
                         fillOpacity: 1,
