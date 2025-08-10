@@ -73,20 +73,20 @@ function getGeoJson() {
     }
 }
 
-// function selectColor(feature) {
-//     switch (feature.properties.Accessed) {
-//         case 'true':
-//             return '#FF9900';
-//         case 'false':
-//             return '#000000';
-//         default:
-//             return '#FFFFFF';
-//     }
-// }
-
 function selectColor(feature) {
-    return '#000000';
+    switch (feature.properties.isClosed) {
+        case true:
+            return '#9E9E9E';
+        case false:
+            return '#2196F3';
+        default:
+            return '#FFFFFF';
+    }
 }
+
+// function selectColor(feature) {
+//     return '#000000';
+// }
 
 // function selectFillColor(feature) {
 //     switch (feature.properties.Type) {
@@ -103,9 +103,9 @@ function selectColor(feature) {
 
 function selectFillColor(feature) {
     if (feature.properties.isCheckedIn == true) {
-        return '#1E8C13';
+        return '#4CAF50';
     } else {
-        return '#666666';
+        return '#FBC02D';
     }
 }
 
